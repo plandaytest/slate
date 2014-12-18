@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Planday REST API
 
 language_tabs:
   - shell
@@ -16,13 +16,48 @@ includes:
 search: true
 ---
 
+
 # Introduction
+Planday API allows you to call to modules of Planday service that supports RESTful with JSON style.
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Addresses:
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+* API: [http://api.planday.net/](http://api.planday.net/) . This is main URL of Planday API for current version, if you want to work with another version, go to [http://api.planday.net/v{x}/](http://api.planday.net/v{x}/) with x is the working version, for example [http://api.planday.net/v1/](http://api.planday.net/v1/) 
+* API document: [http://document.api.planday.net/](http://document.api.planday.net/)
+* Swagger UI: [http://api.planday.net/swagger/](http://api.planday.net/swagger/)
+
+# Getting started guides (simple guides on how to get started)
+
+This page will help you get started with Planday API, topics are covered:
+
+* Authentication: How to authenticate on behalf of user account and token generation.
+* Request: How to call to an API as a HTTP request.
+* Response: Response format and error format in case of exception occurs.
+* Contact: Our contact information that is always ready when you need any help.
+
+# Changes
+# Authentication
+# Requests
+# Responses (including errors)
+# Rate Limiting (exclude for now)
+# Field Filtering (partial rep)
+# Embedding (extension)
+# Pagination
+# Sorting
+# Caching & Concurrency Control
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Authentication
 
@@ -165,4 +200,3 @@ This endpoint retrieves a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the cat to retrieve
-
