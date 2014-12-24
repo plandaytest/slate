@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Planday REST API</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["ruby","python","shell"]);
         });
       </script>
   </head>
@@ -28,9 +28,9 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="ruby">http</a>
+              <a href="#" data-language-name="python">swagger</a>
+              <a href="#" data-language-name="shell">.net</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,217 +39,909 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://www.planday.com'>Planday Website</a></li>
+            <li><a href='mailto:contact@planday.com'>Contact</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Planday API is a fully hosted solution to manage employee scheduling and payroll support. We provide a REST API built on pragmatic RESTful design principles.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Our API uses resource-oriented URLs that leverage built in features of HTTP, like authentication, verbs and response codes. All request and response bodies are JSON encoded, including error responses. Any off-the-shelf HTTP client can be used to communicate with the API.</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>We believe an API is a user interface for a developer - accordingly, we&rsquo;ve made sure our API can be easily explored from the browser!</p>
+<h1 id='getting-started-guides-simple-guides-on-how-to-get-started'>Getting started guides (simple guides on how to get started)</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Please use the followings link for access Planday API</p>
 </blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre><code class="highlight ruby"><span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/
 </span></code></pre>
+<pre><code class="highlight python"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span>
+</code></pre>
+<pre><code class="highlight shell">APIService.cs - Define the constant URL to API service
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+namespace Planday.Website.Utils
+<span class="o">{</span>
+  public class APIService
+  <span class="o">{</span>
+    public static <span class="nb">readonly </span>string API_ROOT_HOST <span class="o">=</span> <span class="s2">"http://api.planday.com/v1"</span>;
+    private static <span class="nb">readonly </span>string API_AUTHENTICATION_LOGIN <span class="o">=</span> <span class="s2">"/authentication/login"</span>;
+    private static <span class="nb">readonly </span>string API_EMPLOYEE_GET_ALL <span class="o">=</span> <span class="s2">"/hr/employees"</span>;
+    public static <span class="nb">readonly </span>string URL_AUTHENTICATION_LOGIN <span class="o">=</span> API_ROOT_HOST + API_AUTHENTICATION_LOGIN;
+    public static <span class="nb">readonly </span>string URL_EMPLOYEE_GET_ALL <span class="o">=</span> API_ROOT_HOST + API_EMPLOYEE_GET_ALL;
+    public static <span class="nb">readonly </span>string URL_EMPLOYEE_GET_SINGLE <span class="o">=</span> API_ROOT_HOST + API_EMPLOYEE_GET_ALL + <span class="s2">"/{0}"</span>;
+  <span class="o">}</span>
+<span class="o">}</span>
+
+ServiceRequest.cs - Util class <span class="k">for </span>calling to the REST service
+
+using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Web;
+namespace Planday.Website.Utils
+<span class="o">{</span>
+  public enum HttpRequestMethod
+  <span class="o">{</span>
+    Get,
+    Post,
+    Put,
+    Delete
+  <span class="o">}</span>
+  public class ServiceRequest
+  <span class="o">{</span>
+    private string address;
+    private object postContent;
+    private string queryString;
+    private HttpRequestMethod method;
+    private HttpSessionStateBase session;
+    public ServiceRequest<span class="o">(</span> HttpSessionStateBase _session, string _address, string _queryString, HttpRequestMethod _method, object _postContent <span class="o">=</span> null <span class="o">)</span>
+    <span class="o">{</span>
+      session <span class="o">=</span> _session;
+      address <span class="o">=</span> _address;
+      queryString <span class="o">=</span> _queryString;
+      method <span class="o">=</span> _method;
+      postContent <span class="o">=</span> _postContent;
+    <span class="o">}</span>
+    public object GetResponse<span class="o">()</span>
+    <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span> session[ Constants.TOKEN <span class="o">]</span> !<span class="o">=</span> null <span class="o">)</span>
+      <span class="o">{</span>
+        address <span class="o">=</span> string.Format<span class="o">(</span> <span class="s2">"{0}?api_key={1}"</span>, address, session[ Constants.TOKEN <span class="o">]</span> <span class="o">)</span>;
+      <span class="o">}</span>
+      <span class="k">if</span> <span class="o">(</span> !string.IsNullOrEmpty<span class="o">(</span> queryString <span class="o">)</span> <span class="o">)</span>
+      <span class="o">{</span>
+        address <span class="o">=</span> string.Format<span class="o">(</span> <span class="s2">"{0}&amp;{1}"</span>, address, queryString <span class="o">)</span>;
+      <span class="o">}</span>
+      var http <span class="o">=</span> <span class="o">(</span>HttpWebRequest<span class="o">)</span>WebRequest.Create<span class="o">(</span> new Uri<span class="o">(</span> address <span class="o">)</span> <span class="o">)</span>;
+      http.Accept <span class="o">=</span> <span class="s2">"application/json"</span>;
+      http.ContentType <span class="o">=</span> <span class="s2">"application/json"</span>;
+      http.Method <span class="o">=</span> method.ToString<span class="o">()</span>;
+      <span class="k">if</span> <span class="o">(</span> postContent !<span class="o">=</span> null <span class="o">)</span>
+      <span class="o">{</span>
+        string parsedContent <span class="o">=</span> postContent.ToString<span class="o">()</span>;
+        ASCIIEncoding encoding <span class="o">=</span> new ASCIIEncoding<span class="o">()</span>;
+        Byte[] bytes <span class="o">=</span> encoding.GetBytes<span class="o">(</span> parsedContent <span class="o">)</span>;
+        Stream newStream <span class="o">=</span> http.GetRequestStream<span class="o">()</span>;
+        newStream.Write<span class="o">(</span> bytes, 0, bytes.Length <span class="o">)</span>;
+        newStream.Close<span class="o">()</span>;
+      <span class="o">}</span>
+      var response <span class="o">=</span> http.GetResponse<span class="o">()</span>;
+      var stream <span class="o">=</span> response.GetResponseStream<span class="o">()</span>;
+      var sr <span class="o">=</span> new StreamReader<span class="o">(</span> stream <span class="o">)</span>;
+      var content <span class="o">=</span> sr.ReadToEnd<span class="o">()</span>;
+      <span class="k">return </span>content;
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Planday API allows you to call to modules of Planday service that supports RESTful with JSON style.</p>
+
+<p>Addresses:</p>
+
+<ul>
+<li><p>API: <a href="http://api.planday.net/">http://api.planday.net/</a>. This is main URL of Planday API for current version, if you want to work with another version, go to <a href="http://api.planday.net/v{x}/">http://api.planday.net/v{x}/</a> with x is the working version, for example <a href="http://api.planday.net/v1/">http://api.planday.net/v1/</a>  </p></li>
+<li><p>API document: <a href="http://document.api.planday.net/">http://document.api.planday.net/</a></p></li>
+<li><p>Swagger UI: <a href="http://api.planday.net/swagger/">http://api.planday.net/swagger/</a></p></li>
+</ul>
+<h1 id='changes'>Changes</h1>
+<p>This is a versionless API. Advance notification of breaking changes will be available in this document and will be sent by email to our developer mailing list.</p>
+<h1 id='authentication'>Authentication</h1><pre><code class="highlight ruby"><span class="no">POST</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/</span><span class="n">authentication</span><span class="o">/</span><span class="n">login</span><span class="o">/</span>
+
+<span class="o">**</span><span class="no">Request</span> <span class="no">Body</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s2">"portalAlias"</span><span class="p">:</span> <span class="s2">"jmi.planday.dk"</span><span class="p">,</span>
+  <span class="s2">"username"</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
+  <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"2wsx"</span>
+<span class="p">}</span>
+
+<span class="no">Successful</span> <span class="n">login</span>
+<span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"zZFZKkyU3oFjZAmdY8GUGxZqbaex1eiz"</span><span class="p">,</span>
+  <span class="s2">"_links"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"rel"</span><span class="p">:</span> <span class="s2">"self"</span><span class="p">,</span>
+      <span class="s2">"href"</span><span class="p">:</span> <span class="s2">"~/authentication/login"</span><span class="p">,</span>
+      <span class="s2">"title"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">"isTemplated"</span><span class="p">:</span> <span class="kp">false</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"rel"</span><span class="p">:</span> <span class="s2">"employees_in_portal"</span><span class="p">,</span>
+      <span class="s2">"href"</span><span class="p">:</span> <span class="s2">"~/hr/employees{?page}"</span><span class="p">,</span>
+      <span class="s2">"title"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">"isTemplated"</span><span class="p">:</span> <span class="kp">true</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"rel"</span><span class="p">:</span> <span class="s2">"timesheet"</span><span class="p">,</span>
+      <span class="s2">"href"</span><span class="p">:</span> <span class="s2">"~/schedule/timesheets{?page}"</span><span class="p">,</span>
+      <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Get timesheets"</span><span class="p">,</span>
+      <span class="s2">"isTemplated"</span><span class="p">:</span> <span class="kp">true</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"_embedded"</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+
+<span class="no">Unsuccessful</span> <span class="n">login</span>
+<span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Incorrect information"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+<pre><code class="highlight python"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Authentication/Authentication_Login</span>
+
+<span class="o">**</span><span class="n">Login</span> <span class="n">Info</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s">"portalAlias"</span><span class="p">:</span> <span class="s">"jmi.planday.dk"</span><span class="p">,</span>
+  <span class="s">"username"</span><span class="p">:</span> <span class="s">"100"</span><span class="p">,</span>
+  <span class="s">"password"</span><span class="p">:</span> <span class="s">"2wsx"</span>
+<span class="p">}</span>
+
+<span class="n">Successful</span> <span class="n">login</span>
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s">"token"</span><span class="p">:</span> <span class="s">"zZFZKkyU3oFjZAmdY8GUGxZqbaex1eiz"</span><span class="p">,</span>
+  <span class="s">"_links"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"rel"</span><span class="p">:</span> <span class="s">"self"</span><span class="p">,</span>
+      <span class="s">"href"</span><span class="p">:</span> <span class="s">"~/authentication/login"</span><span class="p">,</span>
+      <span class="s">"title"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s">"isTemplated"</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">"rel"</span><span class="p">:</span> <span class="s">"employees_in_portal"</span><span class="p">,</span>
+      <span class="s">"href"</span><span class="p">:</span> <span class="s">"~/hr/employees{?page}"</span><span class="p">,</span>
+      <span class="s">"title"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s">"isTemplated"</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">"rel"</span><span class="p">:</span> <span class="s">"timesheet"</span><span class="p">,</span>
+      <span class="s">"href"</span><span class="p">:</span> <span class="s">"~/schedule/timesheets{?page}"</span><span class="p">,</span>
+      <span class="s">"title"</span><span class="p">:</span> <span class="s">"Get timesheets"</span><span class="p">,</span>
+      <span class="s">"isTemplated"</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"_embedded"</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+
+<span class="n">Unsuccessful</span> <span class="n">login</span>
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+
+<span class="p">{</span>
+  <span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s">"message"</span><span class="p">:</span> <span class="s">"Incorrect information"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+<pre><code class="highlight shell">
+Login.cs - Login model
+
+namespace Planday.Website.Models.Authentication
+<span class="o">{</span>
+  public class Login
+  <span class="o">{</span>
+    public string PortalAlias <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string Username <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string Password <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+LoginResult.cs - LoginResult model
+
+using System.Collections.Generic;
+namespace Planday.Website.Models.Authentication
+<span class="o">{</span>
+  public class Link
+  <span class="o">{</span>
+    public string rel <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string href <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string title <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public bool isTemplated <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+  public class LoginResult
+  <span class="o">{</span>
+    public string token <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;Link&gt; _links <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object _embedded <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+Call to Authentication API to login and get token
+
+Call to login service and get token
+
+public ActionResult Login<span class="o">(</span> Login login <span class="o">)</span>
+<span class="o">{</span>
+  try
+  <span class="o">{</span>
+    var json <span class="o">=</span> new JavaScriptSerializer<span class="o">()</span>.Serialize<span class="o">(</span> login <span class="o">)</span>;
+    ServiceRequest request <span class="o">=</span> new ServiceRequest<span class="o">(</span> Session, APIService.URL_AUTHENTICATION_LOGIN, string.Empty, HttpRequestMethod.Post, json <span class="o">)</span>;
+    var content <span class="o">=</span> request.GetResponse<span class="o">()</span>;
+    DataContractJsonSerializer serializer <span class="o">=</span> new DataContractJsonSerializer<span class="o">(</span> typeof<span class="o">(</span> LoginResult <span class="o">)</span> <span class="o">)</span>;
+    LoginResult loginResult <span class="o">=</span> null;
+    using <span class="o">(</span> var ms <span class="o">=</span> new MemoryStream<span class="o">(</span> Encoding.Unicode.GetBytes<span class="o">(</span> content.ToString<span class="o">()</span> <span class="o">)</span> <span class="o">)</span> <span class="o">)</span>
+    <span class="o">{</span>
+      loginResult <span class="o">=</span> <span class="o">(</span>LoginResult<span class="o">)</span>serializer.ReadObject<span class="o">(</span> ms <span class="o">)</span>;
+    <span class="o">}</span>
+    Session.Add<span class="o">(</span> Constants.TOKEN, loginResult.token <span class="o">)</span>;
+    ViewBag.Message <span class="o">=</span> <span class="s2">"Logged in successfully!"</span>;
+    <span class="k">return </span>View<span class="o">()</span>;
+  <span class="o">}</span>
+  catch <span class="o">(</span> Exception ex <span class="o">)</span>
+  <span class="o">{</span>
+    ViewBag.Message <span class="o">=</span> <span class="s2">"Logged in not successfully!"</span> + ex.Message;
+    <span class="k">return </span>View<span class="o">()</span>;
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Virtually all API calls require authentication for access with appropriate authorisation. So you must call to Authentication/Login API before calling any API with the following information:</p>
+
+<p>On success the API will return the login information as well as token that allows you to call other APIs next time. This API may return HTTP code 400 if incorrect information was provided.</p>
+
+<p><strong>URL</strong>
+<code class="prettyprint">http://api.planday.net/v1/authentication/login/</code></p>
+
+<p><strong>Method</strong>
+<code class="prettyprint">POST</code></p>
+
+<p><strong>Query Parameters</strong></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>portal_alias</td>
+<td>Planday username</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>user_name</td>
+<td>Planday password</td>
+</tr>
+<tr>
+<td>password</td>
+<td>The alias of portal of log-in account</td>
 </tr>
 </tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><strong>Successful login</strong></p>
 
 <p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+HTTP code 200
 </aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<p><strong>Unsuccessful login</strong></p>
+
+<p><aside class="warning">
+HTTP code 400
+</aside></p>
+<h1 id='requests'>Requests</h1><pre><code class="highlight ruby"><span class="no">Example</span> <span class="no">Requests</span><span class="p">:</span>
+
+<span class="no">GET</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="sr">/0 returns a list of employee belong to current portal.
+
+GET http:/</span><span class="o">/</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">employee</span> <span class="n">information</span> <span class="n">with</span> <span class="no">Id</span> <span class="o">=</span> <span class="mi">100</span><span class="o">.</span>
+
+<span class="no">GET</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span><span class="n">departments</span><span class="o">/</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">department</span> <span class="n">list</span> <span class="n">that</span> <span class="n">an</span> <span class="n">employee</span> <span class="n">with</span> <span class="no">Id</span> <span class="o">=</span> <span class="mi">100</span> <span class="n">belongs</span> <span class="n">to</span><span class="o">.</span>
+
+<span class="no">POST</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span> <span class="n">creates</span> <span class="n">an</span> <span class="n">employee</span><span class="o">.</span>
+
+<span class="no">PUT</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span> <span class="n">updates</span> <span class="n">the</span> <span class="n">information</span> <span class="n">of</span> <span class="n">employee</span> <span class="n">who</span> <span class="n">has</span> <span class="mi">100</span> <span class="n">as</span> <span class="no">Id</span>
+
+<span class="no">PUT</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span><span class="n">departments</span><span class="o">/</span> <span class="n">put</span> <span class="n">employee</span> <span class="n">with</span> <span class="no">Id</span> <span class="o">=</span> <span class="mi">100</span> <span class="n">to</span> <span class="n">the</span> <span class="n">departments</span> <span class="n">that</span> <span class="n">are</span> <span class="k">in</span> <span class="n">request</span> <span class="n">body</span><span class="o">.</span>
+
+<span class="no">DELETE</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span> <span class="n">deletes</span> <span class="n">an</span> <span class="n">employee</span> <span class="n">information</span> <span class="n">who</span> <span class="n">has</span> <span class="mi">100</span> <span class="n">as</span> <span class="no">Id</span>
+
+<span class="no">DELETE</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">api</span><span class="p">.</span><span class="nf">planday</span><span class="p">.</span><span class="nf">net</span><span class="sr">/v1/em</span><span class="n">ployees</span><span class="o">/</span><span class="mi">100</span><span class="o">/</span><span class="n">departments</span> <span class="n">remove</span> <span class="n">employee</span> <span class="n">with</span> <span class="no">Id</span> <span class="o">=</span> <span class="mi">100</span> <span class="n">from</span> <span class="n">the</span> <span class="n">departments</span> <span class="n">that</span> <span class="n">are</span> <span class="k">in</span> <span class="n">request</span> <span class="n">body</span><span class="o">.</span>
+
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<pre><code class="highlight python"><span class="n">Example</span> <span class="n">Requests</span><span class="p">:</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Get</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Get returns a list of employee belong to current portal.</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Get_0/ returns an employee information with input Id specified in swagger UI.</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_GetDepartments returns the department list that an employee with input Id belongs to.</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_New creates an employee.</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Update  updates the information of employee who has Id specified in swagger UI input option</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_AddEmployeeToDepartments put employee to the departments that are in request body.</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Delete deletes an employee information</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_RemoveEmployeeFromDepartments remove employee from the departments that are in request body.</span>
+
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<p>Planday API allows you to call the service that supports RESTful in JSON format. The APIs are categorised by the modules:
+Authentication:</p>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<ul>
+<li>Login: <a href="http://api.planday.net/v1/authentication/login/">http://api.planday.net/v1/authentication/login/</a></li>
+<li>Logout: <a href="http://api.planday.net/v1/authentication/logout/">http://api.planday.net/v1/authentication/logout/</a></li>
+<li>HR: Provides the APIs for operating with HR data includes departments, groups and employees..</li>
+<li>Schedule: Provide the APIs for operating with schedule data includes day schedule, timesheet, puch-clock..</li>
+</ul>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>Each API is organised by the format <a href="http://api.planday.net/v1/{modules}/entity/{id-or-property}">http://api.planday.net/v1/{modules}/entity/{id-or-property}</a> and used HTTP method as the verb of operation as following:</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>HTTP method</th>
+<th>Operation</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>GET</td>
+<td>Get an entity, entity list or entity&rsquo;s properties / relations.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>Create an entity, property or relation.</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Update an entity, property or relation.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Delete an employee, property or relation.</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<p>Please note that we use these methods for the operations as standard and will inform you in special case.</p>
+<h1 id='responses-including-errors'>Responses (including errors)</h1><pre><code class="highlight ruby"><span class="no">Example</span> <span class="no">Call</span>
 
-<p>The Kittn API uses the following error codes:</p>
+<span class="no">GET</span> <span class="n">http</span><span class="p">:</span><span class="sr">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2888</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">hr</span><span class="o">/</span><span class="n">employees</span><span class="o">/</span><span class="mi">432432</span><span class="o">/</span><span class="n">groups</span><span class="o">/</span>
+
+<span class="no">Call</span> <span class="n">to</span> <span class="n">get</span> <span class="n">departments</span> <span class="n">of</span> <span class="n">an</span> <span class="n">employee</span> <span class="n">that</span> <span class="n">is</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span> <span class="no">Method</span> <span class="k">return</span> <span class="n">validation</span> <span class="n">error</span><span class="p">.</span>
+
+<span class="nf">*</span><span class="o">*</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"propertyName"</span><span class="p">:</span> <span class="s2">"employeeId"</span><span class="p">,</span>
+        <span class="s2">"propertyValue"</span><span class="p">:</span> <span class="mi">432432</span><span class="p">,</span>
+        <span class="s2">"errorMessage"</span><span class="p">:</span> <span class="s2">"Employee does not exist"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Employee does not exist"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="n">Example</span> <span class="n">Call</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_GetDepartments</span>
+
+<span class="n">Swagger</span> <span class="n">UI</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Id</span> <span class="o">=</span> <span class="mi">432432</span>
+
+<span class="n">Call</span> <span class="n">to</span> <span class="n">get</span> <span class="n">departments</span> <span class="n">of</span> <span class="n">an</span> <span class="n">employee</span> <span class="n">that</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span> <span class="n">Method</span> <span class="k">return</span> <span class="n">validation</span> <span class="n">error</span><span class="o">.</span>
+
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s">"propertyName"</span><span class="p">:</span> <span class="s">"employeeId"</span><span class="p">,</span>
+        <span class="s">"propertyValue"</span><span class="p">:</span> <span class="mi">432432</span><span class="p">,</span>
+        <span class="s">"errorMessage"</span><span class="p">:</span> <span class="s">"Employee does not exist"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s">"message"</span><span class="p">:</span> <span class="s">"Employee does not exist"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Every request to Planday API will return one of the following response codes, include the HTTP status code. On a successful request, the data will be return in JSON format with HTPP code 200. On an unsuccessful operation, another HTTP code will be return, and the message with our standard code to describe more about the error.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>HTTP code</th>
+<th>API code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>200</td>
+<td>200</td>
+<td>The call is successfully made, data will be returned in JSON format.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>401</td>
+<td>Unathorized. Invalid token or the user not logged in yet.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>404</td>
+<td>Not found. The requested entity is not found.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>409</td>
+<td>409-xx</td>
+<td>Conflicted. For example, duplicated username. (xx is a number)</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>400</td>
+<td>400-010</td>
+<td>Bad request. For example, call to get an employee with Id is in invalid format.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>400</td>
+<td>400-020</td>
+<td>Validation error. For example, call to get departments of an employee that is not found.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>500</td>
+<td>Internal error.</td>
+</tr>
+</tbody></table>
+<h1 id='rate-limiting-exclude-for-now'>Rate Limiting (exclude for now)</h1><h1 id='field-filtering-partial-rep'>Field Filtering (partial rep)</h1><h1 id='embedding-extension'>Embedding (extension)</h1><h1 id='pagination'>Pagination</h1><h1 id='sorting'>Sorting</h1><h1 id='caching-amp-concurrency-control'>Caching &amp; Concurrency Control</h1><h1 id='ressources-and-models'>[*Ressources and Models]</h1><h2 id='web-hook'>Web Hook</h2><h2 id='employee'>Employee</h2>
+<p>This module contains the APIs to operate with employee entity</p>
+<h3 id='get-employee-list'>Get employee list</h3>
+<p><strong>Title</strong>
+Get the employee list of current portal</p>
+<pre><code class="highlight ruby"><span class="no">Get</span> <span class="n">employee</span> <span class="n">list</span> <span class="n">using</span> <span class="n">jquery</span>
+
+<span class="vg">$.</span><span class="n">ajax</span><span class="p">({</span>
+  <span class="ss">url: </span><span class="s2">"http://api.planday.net/v1/employees/?api_key=qadbXS1tEQdtPlPPFAz1ZAc4KCWJ2kbbh&amp;%24skip=25&amp;%24top=10&amp;%"</span><span class="p">,</span>
+  <span class="ss">dataType: </span><span class="s2">"json"</span><span class="p">,</span>
+  <span class="n">type</span> <span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+  <span class="n">success</span> <span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">});</span>
+
+
+</code></pre>
+<pre><code class="highlight python"><span class="n">Get</span> <span class="n">employee</span> <span class="nb">list</span> <span class="n">using</span> <span class="n">swagger</span> <span class="n">ui</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">planday</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">swagger</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="c">#!/Employees/Employees_Get</span>
+
+<span class="n">swagger</span> <span class="n">option</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">qadbXS1tEQdtPlPPFAz1ZAc4KCWJ2kbbh</span>
+<span class="err">$</span><span class="n">skip</span><span class="o">=</span><span class="mi">25</span>
+<span class="err">$</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span>
+
+</code></pre>
+<pre><code class="highlight shell">
+Get employee list of current portal
+
+Define Employee and EmployeeListResult model
+
+Employee.cs - Employee model
+
+using System;
+using System.Collections.Generic;
+namespace Planday.Website.Models.HR
+<span class="o">{</span>
+  public class Credentials
+  <span class="o">{</span>
+  <span class="o">}</span>
+  public class Department
+  <span class="o">{</span>
+    public int id <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+  public class EmployeeGroup
+  <span class="o">{</span>
+    public int id <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+  public class Link
+  <span class="o">{</span>
+    public string rel <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string href <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object title <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public bool isTemplated <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+  public class Employee
+  <span class="o">{</span>
+    public int id <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string firstName <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object middleName <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string lastName <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Credentials credentials <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string birthday <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;Department&gt; departments <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;EmployeeGroup&gt; employeeGroups <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string initials <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string nickName <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string ssn <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string zip <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string city <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Nullable&lt;long&gt; countryId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Nullable&lt;long&gt; regionId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string cellPhone <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public int? cellPhoneCountryId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string phone <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Nullable&lt;long&gt; phoneCountryId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string hiredDate <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string bankRegNumber <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string bankAccount <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string description <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string workHours <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string salaryIdentifier <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public bool isMale <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public bool isPublic <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public bool isEmailNotify <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object profileImage <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object profileImageThumb <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public double lieuOverTimeBalance <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public double employeeBuyBalance <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Nullable&lt;long&gt; languageId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public int employeeTypeId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public string email <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object image <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public Nullable&lt;long&gt; timeZoneId <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object employeeProperties <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;Link&gt; _links <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object _embedded <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+
+EmployeeListResult.cs - Employee list model
+
+using System.Collections.Generic;
+namespace Planday.Website.Models.HR
+<span class="o">{</span>
+  public class EmployeeListResult
+  <span class="o">{</span>
+    public int totalResults <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public int totalPages <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public int page <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;Employee&gt; resourceList <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public List&lt;Link&gt; _links <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+    public object _embedded <span class="o">{</span> get; <span class="nb">set</span>; <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+Call to API to get employee list
+
+public ActionResult Index<span class="o">()</span>
+<span class="o">{</span>
+  try
+  <span class="o">{</span>
+    ServiceRequest request <span class="o">=</span> new ServiceRequest<span class="o">(</span> Session, APIService.URL_EMPLOYEE_GET_ALL, string.Empty, HttpRequestMethod.Get <span class="o">)</span>;
+    var content <span class="o">=</span> request.GetResponse<span class="o">()</span>;
+    DataContractJsonSerializer serializer <span class="o">=</span> new DataContractJsonSerializer<span class="o">(</span> typeof<span class="o">(</span> EmployeeListResult <span class="o">)</span> <span class="o">)</span>;
+    EmployeeListResult employeeListResult <span class="o">=</span> null;
+    using <span class="o">(</span> var ms <span class="o">=</span> new MemoryStream<span class="o">(</span> Encoding.Unicode.GetBytes<span class="o">(</span> content.ToString<span class="o">()</span> <span class="o">)</span> <span class="o">)</span> <span class="o">)</span>
+    <span class="o">{</span>
+      employeeListResult <span class="o">=</span> <span class="o">(</span>EmployeeListResult<span class="o">)</span>serializer.ReadObject<span class="o">(</span> ms <span class="o">)</span>;
+    <span class="o">}</span>
+    <span class="k">return </span>View<span class="o">(</span> employeeListResult.resourceList <span class="o">)</span>;
+  <span class="o">}</span>
+  catch <span class="o">(</span> Exception ex <span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return </span>View<span class="o">()</span>;
+  <span class="o">}</span>
+<span class="o">}</span>
+
+You can get the full sample project here.
+
+</code></pre>
+
+<p><strong>URL</strong>
+<code class="prettyprint">http://api.planday.net/v1/employees/</code></p>
+
+<p><strong>Method</strong>
+<code class="prettyprint">GET</code></p>
+
+<p><strong>Query Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>Access token</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>$skip</td>
+<td>Number of first items should be skipped. Example: $skip=25</td>
+</tr>
+<tr>
+<td>$top</td>
+<td>Number of first items to select. It&rsquo;s the number of items in the page as well. Example: $top=10</td>
+</tr>
+<tr>
+<td>$orderby</td>
+<td>Order operation. Example: $orderby=FirstName,LastName</td>
+</tr>
+<tr>
+<td>$filter</td>
+<td>Filter operation. Example: $filter=FirstName eq &lsquo;Christian&rsquo;</td>
 </tr>
 </tbody></table>
 
+<p><strong>Response</strong></p>
+
+<p><strong>Successful Response</strong></p>
+<pre><code class="highlight ruby"><span class="no">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="no">Success</span> <span class="no">Response</span>
+<span class="no">Employee</span> <span class="n">list</span> <span class="n">with</span> <span class="n">pagination</span>
+
+<span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s2">"totalResults"</span><span class="p">:</span> <span class="mi">202</span><span class="p">,</span>
+  <span class="s2">"totalPages"</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span>
+  <span class="s2">"page"</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span>
+  <span class="s2">"resourceList"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+    <span class="p">.</span><span class="nf">.</span><span class="o">.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+<pre><code class="highlight python"><span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="n">Success</span> <span class="n">Response</span>
+<span class="n">Employee</span> <span class="nb">list</span> <span class="k">with</span> <span class="n">pagination</span>
+
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s">"totalResults"</span><span class="p">:</span> <span class="mi">202</span><span class="p">,</span>
+  <span class="s">"totalPages"</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span>
+  <span class="s">"page"</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span>
+  <span class="s">"resourceList"</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+  <span class="o">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p><aside class="success">
+Code: 200</p>
+
+<p>Response: Employee list with pagination
+</aside></p>
+
+<p><strong>Error Response</strong></p>
+<pre><code class="highlight ruby"><span class="no">Code</span><span class="p">:</span> <span class="mi">400</span> <span class="no">BAD_REQUEST</span>
+<span class="no">Example</span>
+
+<span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Could not find a property named 'FirstNam' on type 'Employee'."</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="no">Code</span><span class="p">:</span> <span class="mi">401</span> <span class="no">UNAUTHORIZED</span>
+<span class="no">Example</span>
+
+<span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+<span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">"code"</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Your token is expired or invalid."</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+<pre><code class="highlight python">
+<span class="n">Code</span><span class="p">:</span> <span class="mi">400</span> <span class="n">BAD_REQUEST</span>
+<span class="n">Example</span>
+
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+<span class="p">{</span>
+<span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+<span class="s">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+<span class="s">"code"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+<span class="s">"message"</span><span class="p">:</span> <span class="s">"Could not find a property named 'FirstNam' on type 'Employee'."</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Code</span><span class="p">:</span> <span class="mi">401</span> <span class="n">UNAUTHORIZED</span>
+<span class="n">Example</span>
+
+<span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+<span class="p">{</span>
+<span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+<span class="s">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+<span class="s">"code"</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+<span class="s">"message"</span><span class="p">:</span> <span class="s">"Your token is expired or invalid."</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+
+</code></pre>
+
+<p><aside class="warning">
+Code: 400</p>
+
+<p>Response: Bad Request
+</aside></p>
+
+<p><aside class="warning">
+Code: 401</p>
+
+<p>Response: Unauthorized
+</aside></p>
+
+<p><strong>Note</strong>
+We use OData as the query building, please go to <a href="http://odata.org">OData</a> website for reference.</p>
+<h3 id='get-single-employee'>Get Single Employee</h3>
+<p><strong>Title</strong>
+Get the employee of current portal by Id</p>
+<pre><code class="highlight ruby"><span class="no">Get</span> <span class="n">employee</span> <span class="n">data</span> <span class="n">using</span> <span class="n">jquery</span>
+
+<span class="vg">$.</span><span class="n">ajax</span><span class="p">({</span>
+  <span class="ss">url: </span><span class="s2">"http://api.planday.net/v1/employees/100"</span><span class="p">,</span>
+  <span class="ss">dataType: </span><span class="s2">"json"</span><span class="p">,</span>
+  <span class="n">type</span> <span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+  <span class="n">success</span> <span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">});</span>
+
+
+</code></pre>
+<pre><code class="highlight shell">
+
+</code></pre>
+
+<p><strong>URL</strong>
+  <code class="prettyprint">http://api.planday.net/v1/employees/{id}</code></p>
+
+<p><strong>Method</strong>
+  <code class="prettyprint">GET</code></p>
+
+<p><strong>Query Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>Access token</td>
+</tr>
+<tr>
+<td>Id</td>
+<td>Id of employee</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><strong>Successful Response</strong></p>
+<pre><code class="highlight ruby">
+
+
+</code></pre>
+
+<p><aside class="success">
+  Code: 200</p>
+
+<p>Response: Employee data
+  </aside></p>
+
+<p><strong>Unsuccessful Response</strong></p>
+<pre><code class="highlight ruby">  <span class="no">Code</span><span class="p">:</span> <span class="mi">404</span> <span class="no">NOT_FOUND</span>
+  <span class="no">Example</span>
+  <span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+  <span class="p">{</span>
+    <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">"code"</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Employee does not exist"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="no">Code</span><span class="p">:</span> <span class="mi">401</span> <span class="no">UNAUTHORIZED</span>
+  <span class="no">Example</span>
+  <span class="o">**</span><span class="no">Response</span> <span class="no">Body</span><span class="o">**</span>
+  <span class="p">{</span>
+    <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">"code"</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Your token is expired or invalid."</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+
+</code></pre>
+<pre><code class="highlight python">  <span class="n">Code</span><span class="p">:</span> <span class="mi">404</span> <span class="n">NOT_FOUND</span>
+  <span class="n">Example</span>
+  <span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+  <span class="p">{</span>
+    <span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s">"code"</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="s">"message"</span><span class="p">:</span> <span class="s">"Employee does not exist"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">Code</span><span class="p">:</span> <span class="mi">401</span> <span class="n">UNAUTHORIZED</span>
+  <span class="n">Example</span>
+  <span class="o">**</span><span class="n">Response</span> <span class="n">Body</span><span class="o">**</span>
+  <span class="p">{</span>
+    <span class="s">"error"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"errors"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s">"code"</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="s">"message"</span><span class="p">:</span> <span class="s">"Your token is expired or invalid."</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+
+</code></pre>
+
+<p><aside class="warning">
+  Code: 400</p>
+
+<p>Response: Bad Request
+  </aside></p>
+
+<p><aside class="warning">
+  Code: 401</p>
+
+<p>Response: Unauthorized
+  </aside></p>
+<h2 id='employee-property'>Employee Property</h2><h3 id='get-custom-property-list'>Get Custom Property List</h3><h3 id='get-a-single-custom-property'>Get A Single Custom Property</h3><h2 id='department'>Department</h2><h3 id='get-department-list'>Get Department List</h3><h3 id='get-single-department'>Get Single Department</h3>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="ruby">http</a>
+                <a href="#" data-language-name="python">swagger</a>
+                <a href="#" data-language-name="shell">.net</a>
           </div>
       </div>
     </div>
